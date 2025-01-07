@@ -91,7 +91,7 @@ public class MyPlugin extends JavaPlugin {
 ### As a Player: Using Commands
 ## JEMultiverse provides several commands for players to manage and interact with worlds.
 
-## nAvailable Commands
+## Available Commands
 /mv create <world_name> <world_type>: Create a new world.
 /mv delete <world_name>: Delete an existing world.
 /mv edit <world_name>: Edit a world using the UI.
