@@ -1,0 +1,11 @@
+# JE18nSection Configuration
+# This configuration section handles localization settings for the application.
+# It specifies the default language and the list of supported languages.
+
+# The default language code of your Minecraft server.
+defaultLanguage: en
+
+# A list of language codes that your Minecraft server supports.
+supportedLanguages:
+  - en
+  - de

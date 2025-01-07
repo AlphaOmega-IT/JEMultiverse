@@ -1,0 +1,119 @@
+# de.yml
+# German translations for the internationalization system.
+# This file is formatted using Kyori MiniMessage with a fancy color palette.
+translations:
+  prefix:
+    - "<gradient:#ff7f50:#ff4500>✦ ᴍᴜʟᴛɪᴠᴇʀsᴇ ✦</gradient> <color:#8b0000>|</color> <color:#d3d3d3>"
+
+  multiverse:
+    world_already_exists:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold> <color:#d3d3d3>ᴇxɪsᴛɪᴇʀᴛ ʙᴇʀᴇɪᴛs.</color> <color:#ff4500>✖</color>"
+    preparing_world:
+      - "<color:#d3d3d3>ᴡᴇʟᴛ ᴡɪʀᴅ ᴇʀsᴛᴇʟʟᴛ...</color> <color:#00ff00>✧</color>"
+    world_created:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold> <color:#d3d3d3>ᴡᴜʀᴅᴇ ᴇʀғᴏʟɢʀᴇɪᴄʜ ᴇʀsᴛᴇʟʟᴛ.</color> <color:#00ff00>✔</color>"
+    world_doesnt_exist:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold> <color:#d3d3d3>ᴇxɪsᴛɪᴇʀᴛ ɴɪᴄʜᴛ.</color> <color:#ff4500>✖</color>"
+    deleting_world:
+      - "<color:#d3d3d3>ʟöscʜᴇ ᴅɪᴇ ᴡᴇʟᴛ <bold><color:#ffd700>%world_name%</color></bold>...</color> <color:#ff4500>✖</color>"
+    world_contains_players:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold> <color:#d3d3d3>ʜᴀᴛ sᴘɪᴇʟᴇʀ.</color> <color:#ff4500>⚠</color>"
+    world_deleted:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold> <color:#d3d3d3>ᴡᴜʀᴅᴇ ᴇʀғᴏʟɢʀᴇɪᴄʜ ɢᴇʟöscʜᴛ.</color> <color:#00ff00>✔</color>"
+    failed_to_delete_world:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold> <color:#d3d3d3>ᴋᴏɴɴᴛᴇ ɴɪᴄʜᴛ ɢᴇʟöscʜᴛ ᴡᴇʀᴅᴇɴ.</color> <color:#ff4500>✖</color>"
+    teleported:
+      - "<color:#d3d3d3>ᴛᴇʟᴇᴘᴏʀᴛɪᴇʀᴇ ᴢᴜʀ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold><color:#d3d3d3>...</color> <color:#00ff00>➤</color>"
+    world_creation_failed:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold> <color:#d3d3d3>ᴋᴏɴɴᴛᴇ ɴɪᴄʜᴛ ᴇʀsᴛᴇʟʟᴛ ᴡᴇʀᴅᴇɴ.</color> <color:#ff4500>✖</color>"
+      - "<color:#d3d3d3>ɢʀᴜɴᴅ: <italic>%exception%</italic></color>"
+    help:
+      - "<gradient:#ff7f50:#ff4500><bold>✦ ᴍᴜʟᴛɪᴠᴇʀsᴇ ʜɪʟғᴇ ✦</bold></gradient><newline>"
+      - "<color:#8b0000>------------------------------------</color><newline>"
+      - "<color:#d3d3d3>ᴠᴇʀғüɢʙᴀʀᴇ ʙᴇғᴇʜʟᴇ:</color><newline>"
+      - "<color:#ffd700>/mv create <world_name> <world_type></color> <color:#d3d3d3>- ᴇʀsᴛᴇʟʟᴇ ᴇɪɴᴇ ɴᴇᴜᴇ ᴡᴇʟᴛ.</color> <color:#00ff00>✧</color><newline>"
+      - "<color:#ffd700>/mv delete <world_name></color> <color:#d3d3d3>- ʟöscʜᴇ ᴇɪɴᴇ ʙᴇsᴛᴇʜᴇɴᴅᴇ ᴡᴇʟᴛ.</color> <color:#ff4500>✖</color><newline>"
+      - "<color:#ffd700>/mv teleport <world_name></color> <color:#d3d3d3>- ᴛᴇʟᴇᴘᴏʀᴛɪᴇʀᴇ ᴢᴜ ᴇɪɴᴇʀ ʙᴇsᴛɪᴍᴍᴛᴇɴ ᴡᴇʟᴛ.</color> <color:#00ff00>➤</color><newline>"
+      - "<color:#ffd700>/mv list</color> <color:#d3d3d3>- ʟɪsᴛᴇ ᴀʟʟᴇ ᴠᴇʀғüɢʙᴀʀᴇɴ ᴡᴇʟᴛᴇɴ ᴀᴜғ.</color> <color:#00ff00>✦</color><newline>"
+      - "<color:#ffd700>/mv setspawn</color> <color:#d3d3d3>- sᴇᴛᴢᴇ ᴅᴇɴ sᴘᴀᴡɴᴘᴜɴᴋᴛ ғüʀ ᴅɪᴇ ᴀᴋᴛᴜᴇʟʟᴇ ᴡᴇʟᴛ.</color> <color:#00ff00>✧</color><newline>"
+      - "<color:#ffd700>/mv spawn</color> <color:#d3d3d3>- ᴛᴇʟᴇᴘᴏʀᴛɪᴇʀᴇ ᴢᴜᴍ sᴘᴀᴡɴᴘᴜɴᴋᴛ ᴅᴇʀ ᴀᴋᴛᴜᴇʟʟᴇɴ ᴡᴇʟᴛ.</color> <color:#00ff00>➤</color><newline>"
+      - "<color:#8b0000>------------------------------------</color><newline>"
+
+  multiverse_editor_ui:
+    title:
+      - "<gradient:#ff7f50:#ff4500><bold>ᴡᴇʟᴛ ʙᴇᴀʀʙᴇɪᴛᴇɴ ✦</bold></gradient>"
+    error:
+      world_doesnt_exist:
+        name:
+          - "<color:#cf98c><bold>ғᴇʜʟᴇʀ ✖</bold></color>"
+        lore:
+          - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛ <bold><color:#ffd700>%world_name%</color></bold> ᴇxɪsᴛɪᴇʀᴛ ɴɪᴄʜᴛ.</color>"
+          - "<color:#d3d3d3>ʙɪᴛᴛᴇ ᴇʀsᴛᴇʟʟᴇ ᴅɪᴇ ᴡᴇʟᴛ ᴍɪᴛ ᴅᴇᴍ ʙᴇғᴇʜʟ <color:#ffd700>/mv create <world_name> <world_type></color>.</color>"
+      you_are_not_in_world:
+        name:
+          - "<color:#cf98c><bold>ғᴇʜʟᴇʀ ✖</bold></color>"
+        lore:
+          - "<color:#d3d3d3>ʙɪᴛᴛᴇ ʙᴇғɪɴᴅᴇ ᴅɪᴄʜ ɪɴ ᴅᴇʀ ᴡᴇʟᴛ <color:#ffd700>%world_name%</color>, ᴜᴍ ᴅɪᴇsᴇɴ ʙᴇғᴇʜʟ ᴢᴜ ɴᴜᴛᴢᴇɴ.</color>"
+    spawn_location:
+      name:
+        - "<color:#d3d3d3>sᴘᴀᴡɴᴘᴜɴᴋᴛ sᴇᴛᴢᴇɴ</color> <color:#00ff00>✧</color>"
+      lore:
+        - "<color:#d3d3d3>ᴅᴇʀ ᴀᴋᴛᴜᴇʟʟᴇ sᴘᴀᴡɴᴘᴜɴᴋᴛ ɪsᴛ ʙᴇɪ</color>"
+        - "<bold><color:#ffd700>%spawn_location%</color></bold><color:#d3d3d3>. ᴜᴍ ᴅᴇɴ sᴘᴀᴡɴᴘᴜɴᴋᴛ ᴢᴜ sᴇᴛᴢᴇɴ,</color>"
+        - "<color:#d3d3d3>ᴋʟɪᴄᴋᴇ ʜɪᴇʀ.</color>"
+    spawn_location_set:
+      - "<color:#d3d3d3>sᴘᴀᴡɴᴘᴜɴᴋᴛ <bold><color:#ffd700>%spawn_location%</color></bold> ᴇʀғᴏʟɢʀᴇɪᴄʜ ɢᴇsᴇᴛᴢᴛ.</color> <color:#00ff00>✔</color>"
+    global_spawn:
+      name:
+        - "<color:#d3d3d3>ɢʟᴏʙᴀʟᴇʀ sᴘᴀᴡɴᴘᴜɴᴋᴛ</color> <color:#00ff00>✧</color>"
+      lore:
+        - "<color:#d3d3d3>ɢʟᴏʙᴀʟᴇʀ sᴘᴀᴡɴᴘᴜɴᴋᴛ: <bold><color:#ffd700>%is_global_spawn%</color></bold></color>"
+        - "<color:#d3d3d3>ᴜᴍ ᴅᴇɴ ɢʟᴏʙᴀʟᴇɴ sᴘᴀᴡɴᴘᴜɴᴋᴛ ᴢᴜ ᴅᴇᴀᴋᴛɪᴠɪᴇʀᴇɴ ᴏᴅᴇʀ ᴢᴜ ᴀᴋᴛɪᴠɪᴇʀᴇɴ, </color>"
+        - "<color:#d3d3d3>ᴋʟɪᴄᴋᴇ ʜɪᴇʀ.</color>"
+    global_spawn_set:
+      - "<color:#d3d3d3>ɢʟᴏʙᴀʟᴇʀ sᴘᴀᴡɴᴘᴜɴᴋᴛ</color> <bold><color:#ffd700>%is_global_spawn%</color></bold><color:#d3d3d3> ɢᴇsᴇᴛᴢᴛ.</color> <color:#00ff00>✔</color>"
+    global_spawn_already_set:
+      - "<color:#d3d3d3>ᴇɪɴ ɢʟᴏʙᴀʟᴇʀ sᴘᴀᴡɴᴘᴜɴᴋᴛ ᴇxɪsᴛɪᴇʀᴛ ʙᴇʀᴇɪᴛs.</color> <color:#ff4500>⚠</color>"
+      - "<color:#d3d3d3>ᴜᴍ ᴇɪɴᴇɴ ɢʟᴏʙᴀʟᴇɴ sᴘᴀᴡɴᴘᴜɴᴋᴛ ɪɴ ᴅᴇʀ ᴡᴇʟᴛ</color> <bold><color:#ffd700>%world_name%</color></bold><color:#d3d3d3> ᴢᴜ ᴅᴇᴀᴋᴛɪᴠɪᴇʀᴇɴ,</color>"
+      - "<color:#d3d3d3>ɢᴇʜᴇ ᴢᴜʀ ᴡᴇʟᴛ ᴜɴᴅ ʙᴇᴀʀʙᴇɪᴛᴇ sɪᴇ.</color>"
+    nether_allowed_name:
+      - "<color:#d3d3d3>ɴᴇᴛʜᴇʀ:</color> <bold><color:#ffd700>%nether_status%</color></bold>"
+    nether_allowed_lore:
+      - "<color:#d3d3d3>ɢɪʙᴛ ᴀɴ, ᴏʙ ᴅᴇʀ ɴᴇᴛʜᴇʀ ᴀᴋᴛɪᴠɪᴇʀᴛ ɪsᴛ.</color>"
+    nether_allowed_set:
+      - "<color:#d3d3d3>ᴅᴇʀ sᴛᴀᴛᴜs ᴅᴇs ɴᴇᴛʜᴇʀ ᴡᴜʀᴅᴇ ɢᴇäɴᴅᴇʀᴛ ᴢᴜ</color> <bold><color:#ffd700>%nether_status%</color></bold><color:#d3d3d3>.</color> <color:#00ff00>✔</color>"
+    end_allowed_name:
+      - "<color:#d3d3d3>ᴇɴᴅᴇ:</color> <bold><color:#ffd700>%end_status%</color></bold>"
+    end_allowed_lore:
+      - "<color:#d3d3d3>ɢɪʙᴛ ᴀɴ, ᴏʙ ᴅᴀs ᴇɴᴅᴇ ᴀᴋᴛɪᴠɪᴇʀᴛ ɪsᴛ.</color>"
+    end_allowed_set:
+      - "<color:#d3d3d3>ᴅᴇʀ sᴛᴀᴛᴜs ᴅᴇs ᴇɴᴅᴇs ᴡᴜʀᴅᴇ ɢᴇäɴᴅᴇʀᴛ ᴢᴜ</color> <bold><color:#ffd700>%end_status%</color></bold><color:#d3d3d3>.</color> <color:#00ff00>✔</color>"
+    world_size:
+      name:
+        - "<color:#d3d3d3>ᴡᴇʟᴛɢʀößᴇ</color> <color:#00ff00>✧</color>"
+      lore:
+        - "<color:#d3d3d3>ᴅɪᴇ ɢʀᴇɴᴢᴇ ᴅᴇʀ ᴡᴇʟᴛ ɪsᴛ</color>"
+        - "<bold><color:#ffd700>%world_size%</color></bold>"
+    world_size_set:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛɢʀößᴇ ᴡᴜʀᴅᴇ ɢᴇäɴᴅᴇʀᴛ ᴢᴜ <bold><color:#ffd700>%world_size%</color></bold><color:#d3d3d3>.</color> <color:#00ff00>✔</color>"
+    world_size_invalid:
+      - "<color:#d3d3d3>ᴅɪᴇ ᴡᴇʟᴛɢʀößᴇ</color> <bold><color:#ffd700>%world_size%</color></bold> <color:#d3d3d3>ɪsᴛ ᴜɴɢüʟᴛɪɢ.</color> <color:#ff4500>✖</color>"
+    allowed_pvp_name:
+      - "<color:#d3d3d3>ᴘᴠᴘ:</color> <bold><color:#ffd700>%pvp_status%</color></bold>"
+
+  spawn:
+    spawn_will_be_located:
+      - "<color:#d3d3d3>ᴅᴇʀ sᴘᴀᴡɴ ᴡɪʀᴅ ʟᴏᴋᴀʟɪsɪᴇʀᴛ...</color> <color:#00ff00>✧</color>"
+    spawn_not_found:
+      - "<color:#d3d3d3>ᴅᴇʀ sᴘᴀᴡɴ ᴡᴜʀᴅᴇ ɴɪᴄʜᴛ ɢᴇsᴇᴛᴢᴛ.</color> <color:#ff4500>✖</color>"
+    teleporting_to_spawn:
+      - "<color:#d3d3d3>ᴛᴇʟᴇᴘᴏʀᴛɪᴇʀᴇ ᴢᴜᴍ sᴘᴀᴡɴ...</color> <color:#00ff00>➤</color>"
+
+  teleport:
+    failure_due_to_missing_target_location:
+      - "<color:#d3d3d3>ᴛᴇʟᴇᴘᴏʀᴛ-ғᴇʜʟᴇʀ: ᴅᴀs ᴢɪᴇʟ ᴋᴏɴɴᴛᴇ ɴɪᴄʜᴛ ɢᴇғᴜɴᴅᴇɴ ᴡᴇʀᴅᴇɴ.</color> <color:#ff4500>✖</color>"
+    success:
+      - "<color:#d3d3d3>ᴅᴜ ᴡᴜʀᴅᴇsᴛ ᴇʀғᴏʟɢʀᴇɪᴄʜ ᴛᴇʟᴇᴘᴏʀᴛɪᴇʀᴛ.</color> <color:#00ff00>✔</color>"
+
+  inventory_click.error_occurred:
+    - "<color:#d3d3d3>ᴇɪɴ ғᴇʜʟᴇʀ ɪsᴛ ᴀᴜғɢᴇᴛʀᴇᴛᴇɴ, ᴡʜɪʟᴇ ᴠᴇʀsᴜᴄʜᴛ ᴡᴜʀᴅᴇ, ᴍɪᴛ ᴅᴇᴍ ɪɴᴠᴇɴᴛᴀʀ ᴢᴜ ɪɴᴛᴇʀᴀɢɪᴇʀᴇɴ! ʙɪᴛᴛᴇ ᴇʀsᴛᴇʟʟᴇ ᴇɪɴ ᴛɪᴄᴋᴇᴛ.</color> <color:#ff4500>ғᴇʜʟᴇʀ: %error_message%</color> <color:#ff4500>✖</color>"

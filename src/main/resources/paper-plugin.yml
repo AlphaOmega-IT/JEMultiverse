@@ -1,0 +1,9 @@
+name: Multiverse
+main: de.jexcellence.multiverse.Multiverse
+loader: de.jexcellence.jeplatform.dependency.JEPluginLoader
+version: 1.0.0
+api-version: 1.21
+description: A plugin that manages multiple worlds in a Bukkit server. It allows players to switch between worlds and provides various features such as world creation, deletion, and teleportation. It also integrates with other plugins like JE18n and JEPlatform for better integration with the server's configuration and platform features. The plugin is designed to be highly customizable and can be extended with additional features and plugins.
+authors: [SaltyFeaRz, AlphaOmega-IT]
+website: https://alphaomega-it.de
+has-open-classloader: true

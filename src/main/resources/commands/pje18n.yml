@@ -1,0 +1,20 @@
+commands:
+  je18n:
+    name: 'je18n'
+    description: 'Reload the translation files'
+    aliases:
+      - i18n
+      - language
+    usage: 'je18n'
+    argumentUsages:
+      1$: 'lut["prefix"] & "&7/" & alias & "&7"'
+    errorMessages:
+      internalError$: 'lut["prefix"] & "&4An internal error occurred"'
+
+permissions:
+  missingMessage$: 'lut["prefix"] & "You\sre lacking the permission: " & permission'
+  nodes:
+    je18nReload: je18n.reload
+
+lut:
+  prefix: '&8[&5JE18n&8] &7'

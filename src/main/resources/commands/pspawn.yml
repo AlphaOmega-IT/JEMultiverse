@@ -1,0 +1,23 @@
+commands:
+  spawn:
+    name: 'spawn'
+    description: 'Teleport yourself to the spawn'
+    aliases:
+      - aospawn
+      - jespawn
+      - aos
+    usage: 'spawn'
+    argumentUsages:
+      1$: 'lut["prefix"] & "&7/" & alias & "&7"'
+    errorMessages:
+      internalError$: 'lut["prefix"] & "&4An internal error occurred"'
+
+permissions:
+  missingMessage$: 'lut["prefix"] & "You\sre lacking the permission: " & permission'
+  nodes:
+    multiverse:
+      spawn: multiverse.spawn
+      setSpawn: multiverse.spawn.set
+
+lut:
+  prefix: '&8[&5Multiverse&8] &7'

@@ -1,0 +1,35 @@
+commands:
+  multiverse:
+    name: 'multiverse'
+    description: 'Handle worlds with JEMultiverse'
+    aliases:
+      - mv
+      - aomv
+      - multiverse
+    usage: 'multiverse <action> <world-name> [generator-type]'
+    argumentUsages:
+      1$: 'lut["prefix"] & "&7/" & alias & " &c<action> &7<world-name>"'
+      2$: 'lut["prefix"] & "&7/" & alias & " &7<action> &c<world-name>"'
+      3$: 'lut["prefix"] & "&7/" & alias & " &7<action> &7<world-name> &c<generator-type>"'
+    errorMessages:
+      malformedEnum$: |
+        lut["prefix"] & "&7The value &c" & value & " &7is not one of (" &
+        iter_cat(constant_names, (constant_name) => "&c" & constant_name, "&7, ", "&cNo values available") &
+        "&7)"
+      internalError$: 'lut["prefix"] & "&4An internal error occurred"'
+
+permissions:
+  missingMessage$: 'lut["prefix"] & "You\sre lacking the permission: " & permission'
+  nodes:
+    multiverse:
+      command: multiverse.command
+      commandCreate: multiverse.command.create
+      commandDelete: multiverse.command.delete
+      commandEdit: multiverse.command.edit
+      CommandForceCreate: multiverse.command.force_create
+      commandHelp: multiverse.command.help
+      commandLoad: multiverse.command.load
+      commandTeleport: multiverse.command.teleport
+
+lut:
+  prefix: '&8[&5Multiverse&8] &7'
