@@ -35,7 +35,7 @@ dependencies {
     implementation("me.blvckbytes:GPEEE:0.1") {
         isTransitive = false
     }
-    implementation("me.blvckbytes:BukkitCommands:0.1") {
+    implementation("de.jexcellence.commands:JECommands:1.0.0") {
         isTransitive = false
     }
     implementation("de.jexcellence.je18n:JE18n:1.0.0") {
@@ -47,6 +47,8 @@ dependencies {
     implementation("de.jexcellence.hibernate:JEHibernate:1.0.0") {
         isTransitive = false
     }
+    implementation("de.jexcellence:inventory-framework-platform-bukkit:3.2.0")
+    implementation("de.jexcellence:inventory-framework-platform-paper:3.2.0")
 
     compileOnly(platform("org.hibernate.orm:hibernate-platform:6.6.4.Final"))
     compileOnly("org.hibernate.orm:hibernate-core")

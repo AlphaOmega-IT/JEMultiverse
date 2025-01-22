@@ -2,8 +2,10 @@ package de.jexcellence.multiverse.database.converter;
 
 import de.jexcellence.jeplatform.utility.serializer.LocationSerializer;
 import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 import org.bukkit.Location;
 
+@Converter(autoApply = true)
 public class LocationConverter implements AttributeConverter<Location, String> {
 
   @Override

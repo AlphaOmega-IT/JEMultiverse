@@ -42,6 +42,11 @@ translations:
   multiverse_editor_ui:
     title:
       - "<gradient:#ff7f50:#ff4500><bold>ᴡᴇʟᴛ ʙᴇᴀʀʙᴇɪᴛᴇɴ ✦</bold></gradient>"
+    data_loading:
+      name:
+        - "<color:#d3d3d3>ʟᴀᴅᴇ ᴡᴇʟᴛ...</color> <color:#00ff00>✧</color>"
+      lore:
+        - "<color:#d3d3d3>ʟᴀᴅᴇ %world_name%...</color> <color:#00ff00>✧</color>"
     error:
       world_doesnt_exist:
         name:

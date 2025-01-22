@@ -1,23 +1,24 @@
 commands:
-  spawn:
-    name: 'spawn'
+  pspawn:
+    name: 'pspawn'
     description: 'Teleport yourself to the spawn'
     aliases:
       - aospawn
       - jespawn
+      - spawn
       - aos
     usage: 'spawn'
     argumentUsages:
       1$: 'lut["prefix"] & "&7/" & alias & "&7"'
     errorMessages:
       internalError$: 'lut["prefix"] & "&4An internal error occurred"'
-
-permissions:
-  missingMessage$: 'lut["prefix"] & "You\sre lacking the permission: " & permission'
-  nodes:
-    multiverse:
-      spawn: multiverse.spawn
-      setSpawn: multiverse.spawn.set
+      playerNotOnline$: 'lut["prefix"] & "&4The player is not online"'
+      notAPlayer$: 'lut["prefix"] & "&4You\sre not a player"'
+    permissions:
+      missingMessage$: 'lut["prefix"] & "You\sre lacking the permission: " & permission'
+      nodes:
+        command: spawn.command
+        commandSet: spawn.command.set
 
 lut:
   prefix: '&8[&5Multiverse&8] &7'

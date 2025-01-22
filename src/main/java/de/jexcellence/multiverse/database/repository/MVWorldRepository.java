@@ -39,6 +39,13 @@ public class MVWorldRepository extends AbstractCRUDRepository<MVWorld, Long> {
     return foundWorlds;
   }
 
+  public CompletableFuture<List<MVWorld>> findAllAsync(
+      final int pageNumber,
+      final int pageSize
+  ) {
+    return CompletableFuture.supplyAsync(() -> this.findAll(pageNumber, pageSize), this.executor);
+  }
+
   public MVWorld findByIdentifier(
       final @NotNull String identifier
   ) {
@@ -68,33 +75,11 @@ public class MVWorldRepository extends AbstractCRUDRepository<MVWorld, Long> {
   public CompletableFuture<MVWorld> findByIdentifierAsync(
       final @NotNull String identifier
   ) {
-    MVWorld cachedWorld = this.cache.getIfPresent(identifier);
-
-    if (cachedWorld == null) {
-      CompletableFuture<MVWorld> foundWorld = super.findByAttributesAsync(Map.of("identifier", identifier));
-      return foundWorld.thenApplyAsync(mvWorld -> {
-        if (mvWorld != null)
-          this.cache.put(mvWorld.getIdentifier(), mvWorld);
-
-        return mvWorld;
-      }, this.executor);
-    }
-
-    return CompletableFuture.completedFuture(cachedWorld);
+    return CompletableFuture.supplyAsync(() -> this.findByIdentifier(identifier), this.executor);
   }
 
   public CompletableFuture<MVWorld> findByGlobalSpawnAsync() {
-    for (MVWorld mvWorld : this.cache.asMap().values())
-      if (mvWorld.isGlobalizedSpawn())
-        return CompletableFuture.completedFuture(mvWorld);
-
-    CompletableFuture<MVWorld> foundWorld = super.findByAttributesAsync(Map.of("isGlobalizedSpawn", true));
-    return foundWorld.thenApplyAsync(mvWorld -> {
-      if (mvWorld != null)
-        this.cache.put(mvWorld.getIdentifier(), mvWorld);
-
-      return mvWorld;
-    }, this.executor);
+    return CompletableFuture.supplyAsync(this::findByGlobalSpawn, this.executor);
   }
 
   @Override

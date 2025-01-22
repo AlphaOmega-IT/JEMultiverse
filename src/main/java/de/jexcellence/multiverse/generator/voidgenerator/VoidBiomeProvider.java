@@ -8,16 +8,19 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides the THE_VOID biome for a void world generation.
+ */
 public class VoidBiomeProvider extends BiomeProvider {
 
 	/**
-	 * A description of the entire Java function.
+	 * Retrieves the biome at a given location in the world.
 	 *
-	 * @param  info	description of parameter
-	 * @param  x	    description of parameter
-	 * @param  y	    description of parameter
-	 * @param  z	    description of parameter
-	 * @return        description of return value
+	 * @param info The world info for the current world.
+	 * @param x    The X-coordinate in the chunk.
+	 * @param y    The Y-coordinate in the chunk.
+	 * @param z    The Z-coordinate in the chunk.
+	 * @return A {@link Biome} object representing the chosen biome.
 	 */
 	@Override
 	public @NotNull Biome getBiome(
@@ -30,10 +33,10 @@ public class VoidBiomeProvider extends BiomeProvider {
 	}
 
 	/**
-	 * Retrieves a list of biomes based on the provided world information.
+	 * Returns a list of biomes appropriate for the given {@link WorldInfo}.
 	 *
-	 * @param  info  the world information used to determine the biomes
-	 * @return       a list of biomes
+	 * @param info The world info for the current world.
+	 * @return A list of biomes supported by this provider.
 	 */
 	@Override
 	public @NotNull List<Biome> getBiomes(

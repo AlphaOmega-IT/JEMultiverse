@@ -58,6 +58,12 @@ public class MVWorld extends AbstractEntity {
     private boolean isPvPEnabled;
     private String enterPermission;
 
+    public Builder() {
+      this.identifier = "";
+      this.type = null;
+      this.environment = null;
+    }
+
     public Builder(final @NotNull World world, final MVWorldType type, final World.Environment environment) {
       this.identifier = world.getName();
       this.type = type;

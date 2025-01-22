@@ -1,6 +1,6 @@
 commands:
-  multiverse:
-    name: 'multiverse'
+  pmultiverse:
+    name: 'pmultiverse'
     description: 'Handle worlds with JEMultiverse'
     aliases:
       - mv
@@ -17,19 +17,20 @@ commands:
         iter_cat(constant_names, (constant_name) => "&c" & constant_name, "&7, ", "&cNo values available") &
         "&7)"
       internalError$: 'lut["prefix"] & "&4An internal error occurred"'
-
-permissions:
-  missingMessage$: 'lut["prefix"] & "You\sre lacking the permission: " & permission'
-  nodes:
-    multiverse:
-      command: multiverse.command
-      commandCreate: multiverse.command.create
-      commandDelete: multiverse.command.delete
-      commandEdit: multiverse.command.edit
-      CommandForceCreate: multiverse.command.force_create
-      commandHelp: multiverse.command.help
-      commandLoad: multiverse.command.load
-      commandTeleport: multiverse.command.teleport
+      playerNotOnline$: 'lut["prefix"] & "&4The player is not online"'
+      notAPlayer$: 'lut["prefix"] & "&4You\sre not a player"'
+      missingArgument$: 'lut["prefix"] & "&4You\sre missing an argument"'
+    permissions:
+      missingMessage$: 'lut["prefix"] & "You\sre lacking the permission: " & permission'
+      nodes:
+        command: multiverse.command
+        commandCreate: multiverse.command.create
+        commandDelete: multiverse.command.delete
+        commandEdit: multiverse.command.edit
+        commandForceCreate: multiverse.command.force_create
+        commandHelp: multiverse.command.help
+        commandLoad: multiverse.command.load
+        commandTeleport: multiverse.command.teleport
 
 lut:
   prefix: '&8[&5Multiverse&8] &7'

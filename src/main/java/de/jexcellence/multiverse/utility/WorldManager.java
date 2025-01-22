@@ -109,6 +109,8 @@ public class WorldManager {
         mvWorld = this.multiverse.getMvWorldRepository().create(mvWorld);
         new I18n.Builder("multiverse.world_created", player).includingPrefix().withPlaceholders(Map.of("world_name", identifier, "world_id", mvWorld.getId())).build().send();
 
+        this.multiverse.getWorlds().put(mvWorld.getIdentifier(), mvWorld);
+
         this.multiverse.getTeleportFactory().teleport(player, mvWorld.getSpawnLocation(), "multiverse.teleported", Map.of("world_name", identifier));
       } catch (
           final Exception exception
@@ -151,6 +153,8 @@ public class WorldManager {
               final World world = worldCreator.createWorld();
 
               assert world != null;
+
+              this.multiverse.getWorlds().put(mvWorld.getIdentifier(), mvWorld);
 
               this.multiverse.getPlatformLogger().logInfo("Loaded World: " + world.getName() + " with type: " + mvWorld.getType().name());
               return;
@@ -204,6 +208,7 @@ public class WorldManager {
       );
 
       FileUtils.deleteDirectory(world.getWorldFolder());
+      this.multiverse.getWorlds().remove(identifier);
       this.multiverse.getPlatformLogger().logDebug("Deleted world folder: " + world.getWorldFolder().getAbsolutePath());
     } catch (
         final Exception exception
