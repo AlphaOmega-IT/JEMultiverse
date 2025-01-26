@@ -97,8 +97,8 @@ public class MVWorldRepository extends AbstractCRUDRepository<MVWorld, Long> {
   }
 
   @Override
-  public void delete(Long aLong) {
-    super.delete(aLong);
-    this.cache.asMap().values().removeIf(world -> world.getId().equals(aLong));
+  public void delete(Long id) {
+    super.delete(id);
+    this.cache.asMap().values().removeIf(world -> world.getId().equals(id));
   }
 }
