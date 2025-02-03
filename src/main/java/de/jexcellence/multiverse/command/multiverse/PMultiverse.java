@@ -130,16 +130,18 @@ public class PMultiverse extends PlayerCommand {
 
     this.multiverse.getMvWorldRepository().findByIdentifierAsync(worldIdentifier).thenAcceptAsync(
       mvWorld -> {
-        this.multiverse.getViewFrame().open(
-          MultiverseEditorView.class, player,
-          Map.of(
-            "plugin", multiverse,
-            "identifier", worldIdentifier,
-            "mvWorld", mvWorld == null ? new MVWorld.Builder().build() : mvWorld
+        Bukkit.getScheduler().runTask(this.multiverse, () -> {
+          this.multiverse.getViewFrame().open(
+            MultiverseEditorView.class, player,
+            Map.of(
+              "plugin", multiverse,
+              "identifier", worldIdentifier,
+              "mvWorld", mvWorld == null ? new MVWorld.Builder().build() : mvWorld
             )
-        );
+          );
+        });
       }
-    , this.multiverse.getExecutor());
+    );
   }
 
   /**
@@ -231,7 +233,7 @@ public class PMultiverse extends PlayerCommand {
       completions.addAll(getActionCompletions(args[0]));
     } else if (args.length == 2) {
       if (isCreateOrForceAction(args))
-        completions.add("world_" + UUID.randomUUID().toString().substring(8));
+        completions.add("world_" + UUID.randomUUID().toString().substring(24).replace("-", ""));
       else
         completions.addAll(getWorldNameCompletions(args[1]));
     } else if (args.length == 3 && isCreateOrForceAction(args)) {
