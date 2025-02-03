@@ -1,6 +1,6 @@
 package de.jexcellence.multiverse.command.spawn;
 
-import me.blvckbytes.bukkitevaluable.section.IPermissionNode;
+import de.jexcellence.evaluable.section.IPermissionNode;
 import org.jetbrains.annotations.NotNull;
 
 /**

@@ -2,7 +2,6 @@ package de.jexcellence.multiverse;
 
 import de.jexcellence.commands.CommandFactory;
 import de.jexcellence.jeplatform.JEPlatform;
-import de.jexcellence.jeplatform.inventory.InventoryFactory;
 import de.jexcellence.jeplatform.logger.JELogger;
 import de.jexcellence.jeplatform.utility.teleportation.TeleportFactory;
 import de.jexcellence.multiverse.api.MultiverseAdapter;
@@ -33,7 +32,6 @@ public class Multiverse extends JavaPlugin {
   private CommandFactory commandFactory;
 
   private MVWorldRepository mvWorldRepository;
-  private InventoryFactory inventoryFactory;
   private TeleportFactory teleportFactory;
   private JEPlatform platform;
 
@@ -60,7 +58,6 @@ public class Multiverse extends JavaPlugin {
       .register(MultiverseAdapter.class, this.adapter, this, ServicePriority.Normal);
 
     this.commandFactory = new CommandFactory(this);
-    this.inventoryFactory = new InventoryFactory(this.platform);
     this.teleportFactory = new TeleportFactory(this.platform);
     this.mvWorldRepository = new MVWorldRepository(this.executor, this.platform.getEntityManagerFactory());
 
@@ -106,15 +103,6 @@ public class Multiverse extends JavaPlugin {
    */
   public MVWorldRepository getMvWorldRepository() {
     return this.mvWorldRepository;
-  }
-
-  /**
-   * Retrieves the {@link InventoryFactory} used for creating inventories and UIs.
-   *
-   * @return The {@link InventoryFactory} instance.
-   */
-  public InventoryFactory getInventoryFactory() {
-    return this.inventoryFactory;
   }
 
   /**

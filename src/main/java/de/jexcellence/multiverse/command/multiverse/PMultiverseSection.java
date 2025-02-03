@@ -1,7 +1,7 @@
 package de.jexcellence.multiverse.command.multiverse;
 
-import me.blvckbytes.bukkitevaluable.section.ACommandSection;
-import me.blvckbytes.gpeee.interpreter.EvaluationEnvironmentBuilder;
+import de.jexcellence.evaluable.section.ACommandSection;
+import de.jexcellence.gpeee.interpreter.EvaluationEnvironmentBuilder;
 
 /**
  * Defines the configuration section for the PMultiverse command, including
