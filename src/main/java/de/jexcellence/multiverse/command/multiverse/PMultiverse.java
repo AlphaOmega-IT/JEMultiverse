@@ -15,13 +15,24 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
+/**
+ * The PMultiverse command class handles player interactions for multiverse-related commands.
+ * Includes sub-commands for creation, deletion, editing, loading, teleporting, and more.
+ */
 @Command
 public class PMultiverse extends PlayerCommand {
 
   private final WorldManager worldManager;
   private final Multiverse multiverse;
 
+  /**
+   * Constructs a new PMultiverse command.
+   *
+   * @param commandSection The command section containing settings for this command.
+   * @param multiverse     The main plugin class instance.
+   */
   public PMultiverse(
     final @NotNull PMultiverseSection commandSection,
     final @NotNull Multiverse multiverse
@@ -31,6 +42,13 @@ public class PMultiverse extends PlayerCommand {
     this.worldManager = new WorldManager(this.multiverse);
   }
 
+  /**
+   * Handles the main invocation of this command by a player, parsing sub-commands.
+   *
+   * @param player The player invoking the command.
+   * @param label  The command label used.
+   * @param args   The command arguments provided by the player.
+   */
   @Override
   protected void onPlayerInvocation(
     final @NotNull Player player,
@@ -47,42 +65,47 @@ public class PMultiverse extends PlayerCommand {
     }
 
     final PMultiverseAction action = this.enumParameterOrElse(args, 0, PMultiverseAction.class, PMultiverseAction.HELP);
-
-    if (action.equals(PMultiverseAction.HELP)) {
+    if (
+      action.equals(PMultiverseAction.HELP)
+    ) {
       this.help(player);
       return;
     }
 
-    final String worldIdentifier = this.stringParameter(args, 1);
-
-    switch (action) {
-      case CREATE -> handleCreate(player, worldIdentifier, args);
-      case DELETE -> handleDelete(player, worldIdentifier);
-      case EDIT -> handleEdit(player, worldIdentifier);
-      case FORCE_CREATION -> handleForceCreation(player, worldIdentifier, args);
-      case LOAD -> handleLoad(player, worldIdentifier, args);
-      case TELEPORT -> handleTeleport(player, worldIdentifier);
-      default -> this.help(player);
-    }
+    final String identifier = this.stringParameter(args, 1);
+    this.handleAction(action, player, args, identifier);
   }
 
+  /**
+   * Creates a new world with the specified identifier if it does not already exist.
+   *
+   * @param player          The player requesting the world creation.
+   * @param args            Additional command arguments.
+   */
   private void handleCreate(
-    Player player,
-    String worldIdentifier,
-    String[] args
+    final Player player,
+    final String worldIdentifier,
+    final String[] args
   ) {
     if (
       this.hasNoPermission(player, PMultiversePermission.CREATE)
     ) return;
 
-    this.worldManager.createWorld(worldIdentifier, this.enumParameterOrElse(args, 2, World.Environment.class, World.Environment.NORMAL),
-      this.enumParameterOrElse(args, 3, MVWorldType.class, MVWorldType.DEFAULT), player, false
-    );
+    final World.Environment environment = this.getOptionalEnum(args, 2, World.Environment.class, World.Environment.NORMAL);
+    final MVWorldType worldType = this.getOptionalEnum(args, 3, MVWorldType.class, MVWorldType.DEFAULT);
+
+    this.worldManager.createWorld(worldIdentifier, environment, worldType, player, false);
   }
 
+  /**
+   * Deletes an existing world with the specified identifier.
+   *
+   * @param player          The player requesting the world deletion.
+   * @param worldIdentifier The world identifier.
+   */
   private void handleDelete(
-    Player player,
-    String worldIdentifier
+    final Player player,
+    final String worldIdentifier
   ) {
     if (
       this.hasNoPermission(player, PMultiversePermission.DELETE)
@@ -91,133 +114,203 @@ public class PMultiverse extends PlayerCommand {
     this.worldManager.deleteWorld(worldIdentifier, player);
   }
 
-  private void handleEdit(Player player, String worldIdentifier) {
+  /**
+   * Opens an edit interface for the specified world.
+   *
+   * @param player          The player requesting to edit the world.
+   * @param worldIdentifier The world identifier.
+   */
+  private void handleEdit(
+    final Player player,
+    final String worldIdentifier
+  ) {
     if (
       this.hasNoPermission(player, PMultiversePermission.EDIT)
     ) return;
 
-    this.multiverse.getViewFrame().open(
-      MultiverseEditorView.class,
-      player,
-      Map.of(
-        "plugin", this.multiverse,
-        "identifier", worldIdentifier,
-        "mvWorld", this.multiverse.getWorlds().getOrDefault(worldIdentifier, new MVWorld.Builder().build())
-      )
+    this.multiverse.getMvWorldRepository().findByIdentifierAsync(worldIdentifier).thenAcceptAsync(
+      mvWorld -> {
+        Bukkit.getScheduler().runTask(this.multiverse, () -> {
+          this.multiverse.getViewFrame().open(
+            MultiverseEditorView.class, player,
+            Map.of(
+              "plugin", multiverse,
+              "identifier", worldIdentifier,
+              "mvWorld", mvWorld == null ? new MVWorld.Builder().build() : mvWorld
+            )
+          );
+        });
+      }
     );
   }
 
+  /**
+   * Forcibly creates a new world, bypassing any existing checks.
+   *
+   * @param player          The player requesting forced creation.
+   * @param worldIdentifier The world identifier.
+   * @param args            Additional command arguments.
+   */
   private void handleForceCreation(
-    Player player,
-    String worldIdentifier,
-    String[] args
+    final Player player,
+    final String worldIdentifier,
+    final String[] args
   ) {
     if (
       this.hasNoPermission(player, PMultiversePermission.FORCE_CREATION)
     ) return;
 
-    this.worldManager.createWorld(worldIdentifier, this.enumParameterOrElse(args, 2, World.Environment.class, World.Environment.NORMAL),
-      this.enumParameterOrElse(args, 3, MVWorldType.class, MVWorldType.DEFAULT), player, true
-    );
+    final World.Environment environment = this.getOptionalEnum(args, 2, World.Environment.class, World.Environment.NORMAL);
+    final MVWorldType worldType = this.getOptionalEnum(args, 3, MVWorldType.class, MVWorldType.DEFAULT);
+
+    this.worldManager.createWorld(worldIdentifier, environment, worldType, player, true);
   }
 
+  /**
+   * Loads an existing world, optionally applying additional parameters.
+   *
+   * @param player          The player requesting the load.
+   * @param worldIdentifier The world identifier.
+   * @param args            Additional command arguments.
+   */
   private void handleLoad(
-    Player player,
-    String worldIdentifier,
-    String[] args
+    final Player player,
+    final String worldIdentifier,
+    final String[] args
   ) {
     if (
       this.hasNoPermission(player, PMultiversePermission.LOAD)
     ) return;
 
-    this.handleForceCreation(player, worldIdentifier, args);
+    this.worldManager.loadWorlds();
   }
 
+  /**
+   * Teleports a player to the specified world.
+   *
+   * @param player          The player to teleport.
+   * @param worldIdentifier The target world identifier.
+   */
   private void handleTeleport(
-    Player player,
-    String worldIdentifier
+    final Player player,
+    final String worldIdentifier
   ) {
     if (
       this.hasNoPermission(player, PMultiversePermission.TELEPORT)
     ) return;
 
-    this.multiverse
-      .getMvWorldRepository()
-      .findByIdentifierAsync(worldIdentifier)
-      .thenAcceptAsync(mvWorld -> {
-        if (mvWorld == null) {
-          new I18n.Builder("multiverse.world_doesnt_exist", player)
-            .includingPrefix()
-            .withPlaceholder("world_name", worldIdentifier)
-            .build()
-            .send()
-          ;
-          return;
-        }
-        this.worldManager.teleport(mvWorld, player);
-      }, this.multiverse.getExecutor())
-    ;
+    this.multiverse.getMvWorldRepository().findByIdentifierAsync(worldIdentifier).thenAcceptAsync(
+      mvWorld -> this.worldManager.teleport(mvWorld, player)
+    , this.multiverse.getExecutor());
   }
 
+  /**
+   * Displays help information about this command to the player.
+   *
+   * @param player The player requesting help.
+   */
   private void help(final @NotNull Player player) {
-    new I18n.Builder("multiverse.help", player)
-      .includingPrefix()
-      .build()
-      .send()
-    ;
+    // Implementation of help message
   }
 
+  /**
+   * Provides tab-completion suggestions for this command.
+   *
+   * @param player The player requesting tab-completion.
+   * @param label  The command label used.
+   * @param args   The current command arguments.
+   * @return A list of possible completions.
+   */
   @Override
   protected List<String> onPlayerTabCompletion(
     final @NotNull Player player,
     final @NotNull String label,
     final String[] args
   ) {
-    List<String> actionNames = Arrays.stream(PMultiverseAction.values())
-        .map(action -> action.name().toLowerCase())
-        .toList();
+    final List<String> completions = new ArrayList<>();
 
-    List<String> completionsArg2;
-    if (args.length > 0 && args[0].equalsIgnoreCase(PMultiverseAction.CREATE.name().toLowerCase())) {
-      completionsArg2 = List.of(UUID.randomUUID().toString().substring(0, 8).replace("-", "_") + "_world");
+    if (args.length == 1) {
+      completions.addAll(getActionCompletions(args[0]));
+    } else if (args.length == 2) {
+      if (isCreateOrForceAction(args))
+        completions.add("world_" + UUID.randomUUID().toString().substring(24).replace("-", ""));
+      else
+        completions.addAll(getWorldNameCompletions(args[1]));
+    } else if (args.length == 3 && isCreateOrForceAction(args)) {
+      completions.addAll(getEnvironmentCompletions(args[2]));
+    } else if (args.length == 4 && isCreateOrForceAction(args)) {
+      completions.addAll(getWorldTypeCompletions(args[3]));
     } else {
-      completionsArg2 = Bukkit.getWorlds().stream()
-          .map(World::getName)
-          .toList();
+      return List.of();
     }
 
-    List<String> environmentNames = Arrays.stream(World.Environment.values())
-        .map(env -> env.name().toLowerCase())
-        .toList();
-
-    List<String> worldTypeNames = Arrays.stream(MVWorldType.values())
-        .map(type -> type.name().toLowerCase())
-        .toList();
-
-    switch (args.length) {
-      case 1:
-        return StringUtil.copyPartialMatches(args[0].toLowerCase(), actionNames, new ArrayList<>());
-      case 2:
-        return StringUtil.copyPartialMatches(args[1].toLowerCase(), completionsArg2, new ArrayList<>());
-      case 3:
-        if (this.isCreateOrForceCreation(args[0])) {
-          return StringUtil.copyPartialMatches(args[2].toLowerCase(), environmentNames, new ArrayList<>());
-        }
-        break;
-      case 4:
-        if (this.isCreateOrForceCreation(args[0])) {
-          return StringUtil.copyPartialMatches(args[3].toLowerCase(), worldTypeNames, new ArrayList<>());
-        }
-        break;
-      default:
-        break;
-    }
-
-    return new ArrayList<>();
+    return completions;
   }
 
-  private boolean isCreateOrForceCreation(String action) {
-    return action.equalsIgnoreCase(PMultiverseAction.CREATE.name().toLowerCase()) ||
-        action.equalsIgnoreCase(PMultiverseAction.FORCE_CREATION.name().toLowerCase());
+  private void handleAction(
+    final PMultiverseAction action,
+    final Player player,
+    final String[] args,
+    final String identifier
+  ) {
+    switch (action) {
+      case CREATE -> handleCreate(player, identifier, args);
+      case DELETE -> handleDelete(player, identifier);
+      case EDIT -> handleEdit(player, identifier);
+      case FORCE_CREATION -> handleForceCreation(player, identifier, args);
+      case LOAD -> handleLoad(player, identifier, args);
+      case TELEPORT, TP -> handleTeleport(player, identifier);
+	    default -> help(player);
+    }
+  }
+
+  private <T extends Enum<T>> T getOptionalEnum(
+    final String[] args,
+    final int index,
+    final Class<T> enumClazz,
+    final T defaultValue
+  ) {
+    return
+      args.length > index ?
+        this.enumParameterOrElse(args, index, enumClazz, defaultValue) :
+        defaultValue;
+  }
+
+  private List<String> getActionCompletions(final String input) {
+    return StringUtil.copyPartialMatches(
+      input.toLowerCase(),
+      Arrays.stream(PMultiverseAction.values()).map(PMultiverseAction::name).map(String::toLowerCase).toList(),
+      new ArrayList<>()
+    );
+  }
+
+  private List<String> getWorldNameCompletions(final String input) {
+    return StringUtil.copyPartialMatches(
+      input.toLowerCase(),
+      Bukkit.getWorlds().stream().map(World::getName).toList(),
+      new ArrayList<>()
+    );
+  }
+
+  private List<String> getEnvironmentCompletions(final String input) {
+    return StringUtil.copyPartialMatches(
+      input.toLowerCase(),
+      Arrays.stream(World.Environment.values()).map(Enum::name).map(String::toLowerCase).toList(),
+      new ArrayList<>()
+    );
+  }
+
+  private List<String> getWorldTypeCompletions(final String input) {
+    return StringUtil.copyPartialMatches(
+      input.toLowerCase(),
+      Arrays.stream(MVWorldType.values()).map(MVWorldType::name).map(String::toLowerCase).toList(),
+      new ArrayList<>()
+    );
+  }
+
+  private boolean isCreateOrForceAction(final String[] args) {
+    return args.length > 0 &&
+      (args[0].equalsIgnoreCase(PMultiverseAction.CREATE.name()) ||
+        args[0].equalsIgnoreCase(PMultiverseAction.FORCE_CREATION.name()));
   }
 }

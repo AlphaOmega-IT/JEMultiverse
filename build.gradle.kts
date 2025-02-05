@@ -23,37 +23,27 @@ repositories {
 }
 
 dependencies {
+    // JExcellence libraries
+    implementation("de.jexcellence.commands:JECommands:1.0.0") { isTransitive = false; }
+    implementation("de.jexcellence.config:Evaluable:1.0.0") { isTransitive = false; }
+    implementation("de.jexcellence.config:GPEEE:1.0.0") { isTransitive = false; }
+    implementation("de.jexcellence.config:ConfigMapper:1.0.0") { isTransitive = false; }
+    implementation("de.jexcellence.je18n:JE18n:1.0.0") { isTransitive = false; }
+    implementation("de.jexcellence.hibernate:JEHibernate:1.0.0") { isTransitive = false; }
+    implementation("de.jexcellence.platform:JEPlatform:1.0.0") { isTransitive = false; }
+
+    // Platform dependencies
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
 
-    // JExcellence Implementations
-    implementation("me.blvckbytes:BBConfigMapper:0.1") {
-        isTransitive = false
-    }
-    implementation("me.blvckbytes:BukkitEvaluable:0.1") {
-        isTransitive = false
-    }
-    implementation("me.blvckbytes:GPEEE:0.1") {
-        isTransitive = false
-    }
-    implementation("de.jexcellence.commands:JECommands:1.0.0") {
-        isTransitive = false
-    }
-    implementation("de.jexcellence.je18n:JE18n:1.0.0") {
-        isTransitive = false
-    }
-    implementation("de.jexcellence.jeplatform:JEPlatform:1.0.0") {
-        isTransitive = false
-    }
-    implementation("de.jexcellence.hibernate:JEHibernate:1.0.0") {
-        isTransitive = false
-    }
+    // Inventory framework
     compileOnly("me.devnatan:inventory-framework-platform-bukkit:3.2.0")
     compileOnly("me.devnatan:inventory-framework-platform-paper:3.2.0")
 
+    // Hibernate dependencies
     compileOnly(platform("org.hibernate.orm:hibernate-platform:6.6.4.Final"))
     compileOnly("org.hibernate.orm:hibernate-core")
     compileOnly("jakarta.transaction:jakarta.transaction-api")
-    compileOnly("com.github.ben-manes.caffeine:caffeine:3.1.8")
+    compileOnly("com.github.ben-manes.caffeine:caffeine:3.2.0")
 }
 
 java {
@@ -67,10 +57,13 @@ tasks.register<ShadowJar>("cleanShadowJar") {
 }
 
 tasks.withType<ShadowJar> {
-    destinationDirectory.set(file("C:\\Users\\Justin\\Desktop\\JExcellence\\JExcellence-Server\\plugins"))
+    //destinationDirectory.set(file("C:\\Users\\Justin\\Desktop\\JExcellence\\JExcellence-Server\\plugins"))
+
+    // Add versioning to the shadow jar
+    archiveFileName.set("Multiverse.jar")
 
     dependencies {
-        exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.RSA")
+        exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA")
     }
 }
 

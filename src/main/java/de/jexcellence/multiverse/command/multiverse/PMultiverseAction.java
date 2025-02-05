@@ -43,5 +43,5 @@ public enum PMultiverseAction {
   /**
    * Represents a request to teleport to another world.
    */
-  TELEPORT
+  TELEPORT, TP
 }
