@@ -44,6 +44,7 @@ dependencies {
     compileOnly("org.hibernate.orm:hibernate-core")
     compileOnly("jakarta.transaction:jakarta.transaction-api")
     compileOnly("com.github.ben-manes.caffeine:caffeine:3.2.0")
+    compileOnly("com.mysql:mysql-connector-j:9.2.0")
 }
 
 java {

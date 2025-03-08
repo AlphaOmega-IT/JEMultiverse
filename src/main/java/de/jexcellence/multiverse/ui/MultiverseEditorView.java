@@ -67,7 +67,8 @@ public class MultiverseEditorView extends View {
 		render.slot(
 			3, 3,
 			new ItemBuildable.Builder(Material.RED_BED)
-				.setName(new I18n.Builder("multiverse_editor_ui.spawn_location.name", render.getPlayer())
+
+			.setName(new I18n.Builder("multiverse_editor_ui.spawn_location.name", render.getPlayer())
 					.build()
 					.display())
 				.setLore(new I18n.Builder("multiverse_editor_ui.spawn_location.lore", render.getPlayer())
@@ -135,3 +136,47 @@ public class MultiverseEditorView extends View {
 		;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
